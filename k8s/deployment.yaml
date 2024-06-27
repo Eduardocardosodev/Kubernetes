@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: goserver
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -17,6 +17,14 @@ spec:
       containers:
         - name: goserver
           image: 'wesleywillians/hello-go:v5.4'
+
+          resources:
+            requests: # -> MINIMO -> SEQUESTRANDO (RESERVANDO) -> POD
+              cpu: '0.3'
+              memory: 20Mi
+            limits:
+              cpu: '0.3'
+              memory: 25Mi
 
           startupProbe:
             httpGet:
@@ -48,6 +56,7 @@ spec:
                 name: goserver-env
             - secretRef:
                 name: goserver-secret
+
           volumeMounts:
             - mountPath: 'go/myfamily'
               name: config
