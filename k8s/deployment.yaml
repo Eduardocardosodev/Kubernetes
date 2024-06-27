@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: 'wesleywillians/hello-go:v5.4'
+          image: 'wesleywillians/hello-go:v9.6'
 
           resources:
             requests: # -> MINIMO -> SEQUESTRANDO (RESERVANDO) -> POD
@@ -31,7 +31,7 @@ spec:
               path: /healthz
               port: 8000
             periodSeconds: 3
-            failureThreshold: 30
+            failureThreshold: 25
 
           readinessProbe:
             httpGet:
