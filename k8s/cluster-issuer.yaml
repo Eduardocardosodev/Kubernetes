@@ -1,0 +1,15 @@
+apiVersion: cert-menager.io/v1alpha2
+kind: CluesterIssuer
+metadata:
+  name: letsencrypt
+  namespace: cert-menager
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: wesley@schoolofnet.com
+    privateKeySecretRef:
+      name: letsencrypt-tls
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
